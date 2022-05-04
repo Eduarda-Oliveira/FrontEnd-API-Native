@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity} from 'react-native';
-import { Button } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, 
+  TouchableOpacity, Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { setStatusBarNetworkActivityIndicatorVisible, StatusBar } from 'expo-status-bar';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function Index({ navigation }) {
 
@@ -13,25 +15,35 @@ export function Index({ navigation }) {
             colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
             style={styles.background}
             />
-    
-            <TextInput
-            style={styles.input}
-            placeholder="Username"
-            autoCorrect={false}
-            />
-    
-            <TextInput
-            secureTextEntry
-            style={styles.input}
-            placeholder="Password"
-            autoCorrect={false}
-            />
-    
-            <Button
-            style={styles.btnRegister}
-            title="Login"
-            ></Button>
-    
+            
+          <Image source={{ uri: "https://i.ibb.co/J3ksyM9/Snowball-750x420.webp" }} 
+          style={styles.image}/>
+
+          <Text style={styles.text}>
+            Username
+          </Text>
+
+          <SafeAreaView style={styles.space}>
+          <StatusBar/>
+          <TouchableOpacity onPress={() => alert ('Hello World!')} style={styles.button}>
+            <Text style={styles.buttonText}> 
+            Ferrari
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => alert ('Hello World!')} style={styles.button}>
+            <Text style={styles.buttonText}> 
+            Mercedes
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => alert ('Hello World!')} style={styles.button}>
+            <Text style={styles.buttonText}> 
+            BMW
+            </Text>
+          </TouchableOpacity>
+          </SafeAreaView>
+        
           </View>
         </KeyboardAvoidingView>
       );
@@ -52,31 +64,41 @@ export function Index({ navigation }) {
         justifyContent: 'center',
         width: '90%',
       },
-    
-      input: {
+  
+      space: {
+        flex: 2,
+        justifyContent: "space-between",
+        flexDirection: "column-reverse",
+      },
+
+      image: {
         position: 'relative',
-        backgroundColor: '#ffffff',
-        width: '90%',
-        marginBottom: 15,
-        color: 'black',
-        fontSize: 17,
-        borderRadius: 15,
-        stroke: 'black',
-        padding: 10,
+        width: 200,
+        height: 200,
+        borderRadius: 200,
       },
-    
-      btnSubmit:{
-        backgroundColor: '#35AAFF',
-        width: '100%',
-        height:45,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 7,
+
+      text: {
+        position: 'relative',
+        color: '#000000',
+        fontSize: 18,
+        marginHorizontal: 15,
+        //fontWeight: 'bold',
       },
-    
-      submitText:{
-        fontSize:18,
-        color: '#FFF',
+
+      button: {
+        position: 'relative',
+        backgroundColor: "blue",
+        padding: 20,
+        borderRadius: 5,  
+        height: 50,
+        width: 150,     
+      },
+      
+      buttonText: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: "white",
       },
     });
     
