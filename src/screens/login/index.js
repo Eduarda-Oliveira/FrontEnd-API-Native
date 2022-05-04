@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -29,7 +29,8 @@ export function Login({ navigation }) {
 
         <Button
         style={styles.btnRegister}
-        title="Login"
+        title="Login" 
+        onPress={() => navigation.navigate('Index')}
         ></Button>
 
       </View>

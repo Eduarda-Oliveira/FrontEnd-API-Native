@@ -18,6 +18,8 @@ const screenOptions = (route, color) => {
     case 'Search':
       iconName = 'search';
       break;
+    case 'Index' : 
+      iconName = 'home';
     default:
       break;
   }
