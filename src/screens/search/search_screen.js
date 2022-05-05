@@ -1,52 +1,89 @@
 import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, FlatList, StatusBar, SafeAreaView} from 'react-native';
+import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, TouchableOpacity, FlatList, StatusBar, SafeAreaView} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export function Search({ navigation }) {
     return (
-      <view>
-        <LinearGradient
-        // Background Linear Gradient
-        colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
-        style={styles.background}
-        />
-        <TextInput
-        style={styles.input}
-        placeholder="Parameter"
-        autoCorrect={false}
-        />
-         <Button
-        style={styles.btnSubmit}
-        title="Search"
-        ></Button>
+      <ScrollView style={styles.scrollView}>
+        <view>
+          <LinearGradient
+          // Background Linear Gradient
+          colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
+          style={styles.background}
+          />
+          <TextInput
+          style={styles.input}
+          placeholder="Parameter"
+          autoCorrect={false}
+          />
+            <Button
+          style={styles.btnSubmit}
+          title="Search"
+          ></Button>
 
-        <FlatList
-          data={[
-            { key: "teste 1" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
+          <FlatList
+            data={[
+              { key: "teste 1" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+              { key: "teste 2" },
+            ]}
+            renderItem={({item}) => <text>{item.key}</text>}
+          />
+        </view>
+      </ScrollView>
 
-          ]}
-          renderItem={({item}) => <text>{item.key}</text>}
-        />
-      </view>
     )
 }
 const styles = StyleSheet.create({
@@ -89,5 +126,8 @@ const styles = StyleSheet.create({
   submitText:{
     fontSize:18,
     color: '#FFF',
+  },
+  scrollView: {
+    marginHorizontal: 20,
   },
 });
