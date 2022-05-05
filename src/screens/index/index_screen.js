@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, 
   TouchableOpacity, Image} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { setStatusBarNetworkActivityIndicatorVisible, StatusBar } from 'expo-status-bar';
-import { SafeAreaView } from 'react-native-safe-area-context';
+//import { setStatusBarNetworkActivityIndicatorVisible, StatusBar } from 'expo-status-bar';
+//import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function Index({ navigation }) {
 
@@ -23,8 +23,7 @@ export function Index({ navigation }) {
             Username
           </Text>
 
-          <SafeAreaView style={styles.space}>
-          <StatusBar/>
+          <View style={styles.space}>
           <TouchableOpacity onPress={() => alert ('Hello World!')} style={styles.button}>
             <Text style={styles.buttonText}> 
             Ferrari
@@ -42,7 +41,7 @@ export function Index({ navigation }) {
             BMW
             </Text>
           </TouchableOpacity>
-          </SafeAreaView>
+          </View>
         
           </View>
         </KeyboardAvoidingView>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput} from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Image} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -13,6 +13,9 @@ export function Login({ navigation }) {
         colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
         style={styles.background}
         />
+
+        <Image source={{ uri: "https://i.ibb.co/J3ksyM9/Snowball-750x420.webp" }} 
+          style={styles.image}/>
 
         <TextInput
         style={styles.input}
@@ -52,6 +55,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
+  },
+
+  image: {
+    position: 'relative',
+    width: 200,
+    height: 200,
+    borderRadius: 200,
   },
 
   input: {
