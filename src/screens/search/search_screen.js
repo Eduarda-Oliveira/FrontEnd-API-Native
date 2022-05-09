@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, TouchableOpacity, FlatList, StatusBar, SafeAreaView} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 export function Search({ navigation }) {
+  // const [documents, setDocuments] = useState()
+  // function getDocuments(){
+  //   fetch('http://localhost:8080/fol/findAll', { mode: 'no-cors' }).then(  
+  //     (response => {
+  //       if (response.body.length > 0) {
+  //         setDocuments(response.body)
+  //       }else{
+  //         console.log("Não há fols para exibir")
+  //       }
+  //     })
+  //   ).catch(
+  //     (e => {
+  //       console.log(`Deu ruim: ${e}`)
+  //     })
+  //   )
+  // }
+  // getDocuments()  
     return (
       <ScrollView style={styles.scrollView}>
         <view>
