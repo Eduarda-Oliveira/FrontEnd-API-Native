@@ -1,107 +1,99 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, TouchableOpacity, FlatList, StatusBar, SafeAreaView} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { FolService } from '../../services'
 
 export function Search({ navigation }) {
-  // const [documents, setDocuments] = useState()
-  // function getDocuments(){
-  //   fetch('http://localhost:8080/fol/findAll', { mode: 'no-cors' }).then(  
-  //     (response => {
-  //       if (response.body.length > 0) {
-  //         setDocuments(response.body)
-  //       }else{
-  //         console.log("Não há fols para exibir")
-  //       }
-  //     })
-  //   ).catch(
-  //     (e => {
-  //       console.log(`Deu ruim: ${e}`)
-  //     })
-  //   )
-  // }
-  // getDocuments()  
-    return (
-      <ScrollView style={styles.scrollView}>
-        <view>
-          <LinearGradient
-          // Background Linear Gradient
-          colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
-          style={styles.background}
-          />
-          <TextInput
-          style={styles.input}
-          placeholder="Parameter"
-          autoCorrect={false}
-          />
-            <Button
-          style={styles.btnSubmit}
-          title="Search"
-          ></Button>
-
-          <FlatList
-            data={[
-              { key: "teste 1" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-            ]}
-            renderItem={({item}) => <text>{item.key}</text>}
-          />
-        </view>
-      </ScrollView>
-
-    )
+  // const [documents, setDocuments] = useState([]);
+  
+  useEffect(()=>{
+    async function getDocuments(){
+      let fols = await FolService.findAll()
+      console.log(fols)
+    }
+    getDocuments()
+  })
+  
+  return (
+    <ScrollView style={styles.scrollView}>
+      <View>
+        <LinearGradient
+        // Background Linear Gradient
+        colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
+        style={styles.background}
+        />
+        <TextInput
+        style={styles.input}
+        placeholder="Parameter"
+        autoCorrect={false}
+        />
+          <Button
+        style={styles.btnSubmit}
+        title="Search"
+        ></Button>
+        {/* <FlatList
+          data={[
+            { key: "teste 1" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+            { key: "teste 2" },
+          ]}
+          renderItem={({item}) => <text>{item.key}</text>}
+        /> */}
+      </View>
+    </ScrollView>
+  )
 }
 const styles = StyleSheet.create({
   background: {
@@ -111,7 +103,6 @@ const styles = StyleSheet.create({
     top: 0,
     height: 420,
   },
- 
   container:{
     flex:1,
     alignItems: 'center',
@@ -127,7 +118,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 17,
     borderRadius: 15,
-    stroke: 'black',
+    // stroke: 'black',
     padding: 10,
   },
 
@@ -146,5 +137,5 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     marginHorizontal: 20,
-  },
+  }
 });
