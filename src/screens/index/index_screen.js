@@ -56,7 +56,7 @@ export function Index({ navigation }) {
         top: 0,
         height: 420,
       },
-     
+
       container:{
         flex:1,
         alignItems: 'center',
