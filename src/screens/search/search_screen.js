@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, TouchableOpacity, FlatList, StatusBar, SafeAreaView} from 'react-native';
+import { StyleSheet, ScrollView, View, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, FlatList, StatusBar, SafeAreaView} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FolService } from '../../services'
 
 export function Search({ navigation }) {
-  // const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState([]);
   
   useEffect(()=>{
     async function getDocuments(){
       let fols = await FolService.findAll()
-      console.log(fols)
+      setDocuments(fols.data)
+
     }
     getDocuments()
   })
@@ -32,65 +33,16 @@ export function Search({ navigation }) {
         style={styles.btnSubmit}
         title="Search"
         ></Button>
-        {/* <FlatList
-          data={[
-            { key: "teste 1" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-            { key: "teste 2" },
-          ]}
-          renderItem={({item}) => <text>{item.key}</text>}
-        /> */}
+        {
+          documents.map(document =>{
+            return(
+              <Text>
+                ID: {document.id}
+              </Text>
+            )
+          })
+        }
+        
       </View>
     </ScrollView>
   )
