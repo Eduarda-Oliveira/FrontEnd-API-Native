@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = '127.0.0.1:8080'
+const host = 'http://127.0.0.1:8080'
 const modelRoute = `${host}/fol`
 
 const FolService = {
