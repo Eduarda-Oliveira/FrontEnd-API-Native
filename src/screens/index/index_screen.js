@@ -1,48 +1,49 @@
-import React from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, 
-  TouchableOpacity, Image} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Image, ScrollView} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-//import { setStatusBarNetworkActivityIndicatorVisible, StatusBar } from 'expo-status-bar';
-//import { SafeAreaView } from 'react-native-safe-area-context';
+import { FolService } from '../../services'
 
 export function Index({ navigation }) {
+  const [documents, setDocuments] = useState([]);
+  
+  useEffect(()=>{
+    async function getDocuments(){
+      let fols = await FolService.findAll()
+      setDocuments(fols.data)
+
+    }
+    getDocuments()
+  })
 
     return (
         <KeyboardAvoidingView style={styles.background}>
-          <View style={styles.container}>
-              <LinearGradient
+          <LinearGradient
             // Background Linear Gradient
             colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
             style={styles.background}
             />
+          
+          <View style={styles.container}>
             
-          <Image source={{ uri: "https://i.ibb.co/J3ksyM9/Snowball-750x420.webp" }} 
+          <Image source={{ uri: "https://i.ibb.co/RgykfNH/bmw.jpg" }} 
           style={styles.image}/>
 
           <Text style={styles.text}>
             Username
           </Text>
 
-          <View style={styles.space}>
-          <TouchableOpacity onPress={() => alert ('Hello World!')} style={styles.button}>
-            <Text style={styles.buttonText}> 
-            Ferrari
-            </Text>
-          </TouchableOpacity>
+          {
+          documents.map(document =>{
+            return(
+              <Text 
+              style={styles.listText}
+              key={document.id}>
+              {document.title}
+              </Text>
+            )
+          })
+        }
 
-          <TouchableOpacity onPress={() => alert ('Hello World!')} style={styles.button}>
-            <Text style={styles.buttonText}> 
-            Mercedes
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => alert ('Hello World!')} style={styles.button}>
-            <Text style={styles.buttonText}> 
-            BMW
-            </Text>
-          </TouchableOpacity>
-          </View>
-        
           </View>
         </KeyboardAvoidingView>
       );
@@ -54,20 +55,15 @@ export function Index({ navigation }) {
         left: 0,
         right: -50,
         top: 0,
-        height: 420,
+        height: '100%',
       },
 
       container:{
-        flex:1,
+       flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
-      },
-  
-      space: {
-        flex: 2,
-        justifyContent: "space-between",
-        flexDirection: "column-reverse",
+        gap: '5%',
       },
 
       image: {
@@ -85,19 +81,8 @@ export function Index({ navigation }) {
         //fontWeight: 'bold',
       },
 
-      button: {
-        position: 'relative',
-        backgroundColor: "blue",
-        padding: 20,
-        borderRadius: 5,  
-        height: 50,
-        width: 150,     
-      },
-      
-      buttonText: {
+      listText: {
+        fontSize: 18,
         textAlign: 'center',
-        fontSize: 20,
-        color: "white",
-      },
+      },  
     });
-    
