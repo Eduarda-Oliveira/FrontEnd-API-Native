@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, TouchableOpacity, FlatList} from 'react-native';
+import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FolService } from '../../services'
@@ -10,10 +10,11 @@ export function Search({ navigation }) {
   useEffect(()=>{
     async function getDocuments(){
       let fols = await FolService.findAll()
-      setDocuments(fols)
+      setDocuments(fols.data)
     }
     getDocuments()
   })
+
   return (
     <KeyboardAvoidingView style={styles.background}>
       <LinearGradient
@@ -32,17 +33,18 @@ export function Search({ navigation }) {
           title="Search"
           ></Button>
       
-
-          {/* <FlatList
-            data={[
-              { key: "teste 1" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-              { key: "teste 2" },
-            ]}
-            renderItem={({item}) => <text>{item.key}</text>}
-          /> */}
+        {
+            documents.map(document => {
+              return(
+                <Text
+                  style={styles.listText}
+                  key={document.id}>
+                  {document.title}
+                </Text>
+              )
+            })
+          }
+          
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -54,12 +56,13 @@ const styles = StyleSheet.create({
     left: 0,
     right: -50,
     top: 0,
-    height: 420,
+    height: '100%',
   },
 
   container:{
     flex:1,
     top: 70,
+    bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
@@ -88,6 +91,11 @@ const styles = StyleSheet.create({
   submitText:{
     fontSize:18,
     color: '#FFF',
+  },
+
+  listText:{
+    top: 150,
+    fontSize: 18,
   },
  
 });
