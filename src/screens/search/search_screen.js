@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, Text} from 'react-native';
+import { useForm } from 'react-hook-form';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FolService } from '../../services'
 
 export function Search({ navigation }) {
    const [documents, setDocuments] = useState([]);
-  
-  useEffect(()=>{
-    async function getDocuments(){
-      let fols = await FolService.findAll()
-      setDocuments(fols.data)
-    }
-    getDocuments()
-  })
+   const { register, setValue, handleSubmit } = useForm()
+   
+   useEffect(() => {
+    register('keyword')
+  }, [register])
+
+  const onSubmit = async (params) => {
+    data ={
+          EFOL_KEYWORD:params.keyword,
+          }
+    await FolService.findByKeyword(data)
+    .then(() => {
+      setDocuments(data)
+    })
+    .catch((error) => {
+           console.log(error.message)
+         });
+  };
 
   return (
     <KeyboardAvoidingView style={styles.background}>
@@ -23,14 +34,18 @@ export function Search({ navigation }) {
           />
       <ScrollView>
         <View style={styles.container}>
+
           <TextInput
           style={styles.input}
           placeholder="Parameter"
           autoCorrect={false}
+          onChangeText={text => setValue('keyword', text)}
           />
+
           <Button
           style={styles.btnSubmit}
           title="Search"
+          onPress={handleSubmit(onSubmit)}
           ></Button>
       
         {
