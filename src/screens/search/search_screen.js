@@ -4,22 +4,20 @@ import { useForm } from 'react-hook-form';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FolService } from '../../services'
+import Async, { useAsync } from 'react-select/async';
+import KeywordMultipleSelect from '../../components/KeywordMultipleSelect';
 
 export function Search({ navigation }) {
+
+   const [keywords, setKeywords] = useState([]);
    const [documents, setDocuments] = useState([]);
    const { register, setValue, handleSubmit } = useForm()
-   
-   useEffect(() => {
-    register('keyword')
-  }, [register])
 
-  const onSubmit = async (params) => {
-    data ={
-          EFOL_KEYWORD:params.keyword,
-          }
-    await FolService.findByKeyword(data)
-    .then(() => {
-      setDocuments(data)
+  function onSubmit() {
+    FolService.findByKeyword(keywords)
+    .then((response) => {
+      console.log(keywords)
+      setDocuments(response)
     })
     .catch((error) => {
            console.log(error.message)
@@ -35,11 +33,8 @@ export function Search({ navigation }) {
       <ScrollView>
         <View style={styles.container}>
 
-          <TextInput
-          style={styles.input}
-          placeholder="Parameter"
-          autoCorrect={false}
-          onChangeText={text => setValue('keyword', text)}
+          <KeywordMultipleSelect value={keywords}
+            onChange={value => setKeywords(value)}
           />
 
           <Button
