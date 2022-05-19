@@ -48,13 +48,18 @@ export default function KeywordMultipleSelect({value, onChange}) {
     }
 
     function getOptionValue(option){
-        return option.name
+        return option;
+    }
+
+    function getOptionLabel(option){
+        return option.name;
     }
 
     return <React.Fragment>
         <Async value={selectValue}
             isMulti={true}
             getOptionValue={getOptionValue}
+            getOptionLabel={getOptionLabel}
             styles={styles.input}
             loadOptions={loadOptions}
             onChange={updateValue}
