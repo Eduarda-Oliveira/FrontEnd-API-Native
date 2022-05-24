@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, View, KeyboardAvoidingView, TextInput, Text} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, ScrollView, View, KeyboardAvoidingView, Text} from 'react-native';
 import { useForm } from 'react-hook-form';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FolService } from '../../services'
-import Async, { useAsync } from 'react-select/async';
 import KeywordMultipleSelect from '../../components/KeywordMultipleSelect';
 
 export function Search({ navigation }) {
 
    const [keywords, setKeywords] = useState([]);
    const [documents, setDocuments] = useState([]);
-   const { register, setValue, handleSubmit } = useForm()
+   const { handleSubmit } = useForm()
 
   function onSubmit() {
     FolService.findByKeyword(keywords)
@@ -29,11 +28,12 @@ export function Search({ navigation }) {
       <LinearGradient
           colors={['rgba(32, 70, 219, 0.76) 60%', 'rgba(32, 129, 219, 0)']}
           style={styles.background}
-          />
+      />
       <ScrollView>
         <View style={styles.container}>
 
-          <KeywordMultipleSelect value={keywords}
+          <KeywordMultipleSelect 
+            value={keywords}
             onChange={value => setKeywords(value)}
           />
 
@@ -43,17 +43,6 @@ export function Search({ navigation }) {
           onPress={handleSubmit(onSubmit)}
           ></Button>
       
-        {
-            documents.map(document => {
-              return(
-                <Text
-                  style={styles.listText}
-                  key={document.id}>
-                  {document.title}
-                </Text>
-              )
-            })
-          }
           
         </View>
       </ScrollView>
@@ -73,39 +62,17 @@ const styles = StyleSheet.create({
     flex:1,
     top: 70,
     bottom: 0,
-    alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
-  },
-
-  input: {
-    position: 'relative',
-    backgroundColor: '#ffffff',
-    width: '90%',
-    marginBottom: 15,
-    color: 'black',
-    fontSize: 17,
-    borderRadius: 15,
-    padding: 10,
   },
 
   btnSubmit:{
     backgroundColor: '#35AAFF',
     width: '100%',
     height:45,
-    alignItems: 'center',
+    alignItems: 'baseline',
     justifyContent: 'center',
     borderRadius: 7,
-  },
-
-  submitText:{
-    fontSize:18,
-    color: '#FFF',
-  },
-
-  listText:{
-    top: 150,
-    fontSize: 18,
   },
  
 });
