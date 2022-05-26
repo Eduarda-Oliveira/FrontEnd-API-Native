@@ -22,6 +22,26 @@ const FolService = {
     })
   )
   return resp
+  },
+
+  findByKeyword: async function (params) {
+    let resp, msg;
+    await axios.get(`${modelRoute}/findByKeyword`, params).then(
+      ({data}) => {
+      if (!data){
+        msg = {error: "Não há fols para exibir"}
+        resp = {msg}
+      }
+      if (data.length > 0) {
+        resp = {data}
+      } 
+    }
+  ).catch(
+    (e => {
+      console.log(`Deu ruim: ${e}`)
+    })
+  )
+  return resp 
   }
 }
 
