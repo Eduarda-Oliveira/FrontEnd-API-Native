@@ -2,6 +2,7 @@ import React from 'react';
 import { Login } from './src/screens/login/login_screen';
 import { Search } from './src/screens/search/search_screen';
 import { Index } from './src/screens/index/index_screen';
+import { Pdf } from './src/screens/pdf/pdf_screen';
 import Icon from 'react-native-vector-icons/Feather';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -37,6 +38,7 @@ const screenOptions = (route, color) => {
       })}> 
       <tab.Screen name="Index" component={Index} options={{header: () => null}}/>
       <tab.Screen name="Search" component={Search} options={{header: () => null}}/>
+      <tab.Screen name="PDF" component={Pdf} options={{header: () => null}}/>
     </tab.Navigator>
     </NavigationContainer>
   );
