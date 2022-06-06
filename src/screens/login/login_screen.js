@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, KeyboardAvoidingView, TextInput, Image} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-
+import { login_service } from '../../services/gateway_service';
 export function Login({ navigation }) {
-  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function login(username, password){
+    await login_service.login(username, password).then((response) => {
+      if (response.data.message === "user authenticated"){
+        navigation.navigate('Index');
+      } else {
+        console.log("Usuário não encontrado, tente novamente")
+      }
+    }).catch((e) => {
+      throw e;
+    })
+  }
+
   return (
     <KeyboardAvoidingView style={styles.background}>
       <LinearGradient
@@ -21,19 +35,23 @@ export function Login({ navigation }) {
         style={styles.input}
         placeholder="Username"
         autoCorrect={false}
+        htmlFor={ username }
+        onChange={ (component) => setUsername(component.target.value) }
         />
 
         <TextInput
         secureTextEntry
         style={styles.input}
+        htmlFor={ password }
         placeholder="Password"
         autoCorrect={false}
+        onChange={ (component) => setPassword(component.target.value) }
         />
 
         <Button
         style={styles.btnRegister}
         title="Login" 
-        onPress={() => navigation.navigate('Index')}
+        onPress={() => login(username,password)}
         ></Button>
 
       </View>
