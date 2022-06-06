@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Image} from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, TextInput, Image} from 'react-native';
 import { Button } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { login_service } from '../../services/gateway_service';
@@ -21,14 +21,14 @@ export function Login({ navigation }) {
 
   return (
     <KeyboardAvoidingView style={styles.background}>
-      <View style={styles.container}>
-          <LinearGradient
+      <LinearGradient
         // Background Linear Gradient
         colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
         style={styles.background}
         />
 
-        <Image source={{ uri: "https://i.ibb.co/J3ksyM9/Snowball-750x420.webp" }} 
+      <View style={styles.container}>
+      <Image source={{ uri: "https://i.ibb.co/RgykfNH/bmw.jpg" }} 
           style={styles.image}/>
 
         <TextInput
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: -50,
     top: 0,
-    height: 420,
+    height: '100%',
   },
  
   container:{
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
+    gap: '2%',
   },
 
   image: {
@@ -91,19 +92,5 @@ const styles = StyleSheet.create({
     fontSize: 17,
     borderRadius: 15,
     padding: 10,
-  },
-
-  btnSubmit:{
-    backgroundColor: '#35AAFF',
-    width: '100%',
-    height:45,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 7,
-  },
-
-  submitText:{
-    fontSize:18,
-    color: '#FFF',
   },
 });
