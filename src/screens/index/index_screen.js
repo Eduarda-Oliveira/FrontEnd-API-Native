@@ -16,13 +16,12 @@ export function Index({ navigation }) {
   })
 
     return (
-        <KeyboardAvoidingView style={styles.background}>
-          <LinearGradient
-            // Background Linear Gradient
-            colors={['rgba(32, 70, 219, 0.76)', 'rgba(32, 129, 219, 0)']}
-            style={styles.background}
-            />
-          
+      <KeyboardAvoidingView style={styles.background}>
+      <LinearGradient
+          colors={['rgba(32, 70, 219, 0.76) 60%', 'rgba(32, 129, 219, 0)']}
+          style={styles.background}
+      />
+      <ScrollView>       
           <View style={styles.container}>
             
           <Image source={{ uri: "https://i.ibb.co/RgykfNH/bmw.jpg" }} 
@@ -43,8 +42,9 @@ export function Index({ navigation }) {
             )
           })
         }
-
           </View>
+          
+          </ScrollView>
         </KeyboardAvoidingView>
       );
     }
@@ -85,4 +85,8 @@ export function Index({ navigation }) {
         fontSize: 18,
         textAlign: 'center',
       },  
+
+      scrollView: {
+        marginHorizontal: 20,
+      }
     });
