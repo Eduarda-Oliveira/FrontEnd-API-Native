@@ -46,11 +46,6 @@ function Routes() {
     <NavigationContainer independent={true}>
       <Stack.Navigator>
         <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{header: () => null}}
-        />
-        <Stack.Screen
           name="Index"
           component={Tabs}
           options={{header: () => null}}

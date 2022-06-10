@@ -26,7 +26,7 @@ const FolService = {
 
   findByKeyword: async function (params) {
     let resp, msg;
-    await axios.get(`${modelRoute}/findByKeyword`, params).then(
+    await axios.post(`${modelRoute}/findByKeyword`, params).then(
       ({data}) => {
       if (!data){
         msg = {error: "Não há fols para exibir"}

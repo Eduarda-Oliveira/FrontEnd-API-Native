@@ -15,13 +15,31 @@ export function Search({ navigation }) {
   function onSubmit() {
     FolService.findByKeyword(keywords)
     .then((response) => {
-      console.log(keywords)
-      setDocuments(response)
+      console.log(response)
+      setDocuments(response.data)
     })
     .catch((error) => {
            console.log(error.message)
          });
   };
+
+  function renderDocuments(){
+    if(!documents){
+      return null;
+    }
+
+    return(
+      documents.map(document =>{
+        return(
+          <Text 
+          style={styles.listText}
+          key={document.id}>
+          {document.title}
+          </Text>
+        )
+      })
+    )
+  }
 
   return (
     <KeyboardAvoidingView style={styles.background}>
@@ -42,6 +60,8 @@ export function Search({ navigation }) {
           title="Search"
           onPress={handleSubmit(onSubmit)}
           ></Button>
+
+        {renderDocuments()}
       
           
         </View>
@@ -74,5 +94,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 7,
   },
+
+  text: {
+    position: 'relative',
+    color: '#000000',
+    fontSize: 18,
+    marginHorizontal: 15,
+    //fontWeight: 'bold',
+  },
+
+  listText: {
+    fontSize: 18,
+    textAlign: 'center',
+  },  
  
 });
