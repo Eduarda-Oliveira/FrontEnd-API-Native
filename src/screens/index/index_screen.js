@@ -6,14 +6,13 @@ import { FolService } from '../../services'
 export function Index({ navigation }) {
   const [documents, setDocuments] = useState([]);
   
-  // useEffect(()=>{
-  //   async function getDocuments(){
-  //     let fols = await FolService.findAll()
-  //     setDocuments(fols.data)
-
-  //   }
-  //   getDocuments()
-  // })
+   useEffect(()=>{
+     async function getDocuments(){
+       let fols = await FolService.findAll()
+       setDocuments(fols.data)
+     }
+     getDocuments()
+   })
 
     return (
       <KeyboardAvoidingView style={styles.background}>
